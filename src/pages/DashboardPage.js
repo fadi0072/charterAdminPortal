@@ -1,33 +1,57 @@
-import React from "react";
-import adminLayout from "../hoc/adminLayout"
+import React, { useState, useEffect } from "react";
+import adminLayout from "../hoc/adminLayout";
+import { useUser } from "../globalStorage/UserProvider";
+import { Link } from "react-router-dom";
 
-class DashboardPage extends React.Component {
-    constructor(props){
-        super(props);
+import { getAllUsers } from "../api/api";
 
-        this.state = {}
-    }
+const DashboardPage = () => {
+  const [state, setState] = useState({});
+  const [userCount, setUserCount] = useState(0);
+  const { user } = useUser();
+  console.log("userData", user);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Retrieve user token from localStorage
+        const userToken = localStorage.getItem("userToken");
 
-    render(){
-        return <>
-            <div className="row">
+        // Make API call with user token
+        const usersResponse = await getAllUsers(userToken);
+        //  console.log("response", usersResponse?.allUsers);
+        const totalUsers = usersResponse?.allUsers?.length;
+        console.log("total users-", totalUsers);
+        setUserCount(totalUsers);
+        setState(usersResponse);
+      } catch (error) {
+        console.error("API error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  return (
+    <>
+      <div className="row">
         <div className="col-xl-3 col-sm-6 mb-3">
           <div className="card text-white bg-primary o-hidden h-100">
             <div className="card-body">
               <div className="card-body-icon">
-                <i className="fa fa-fw fa-comments"></i>
+                <i className="fa fa-fw fa-user"></i>
               </div>
-              <div className="mr-5">26 New Messages!</div>
+              <div className="mr-5">Total Number of Users: {userCount}</div>
             </div>
             <a className="card-footer text-white clearfix small z-1" href="#">
-              <span className="float-left">View Details</span>
-              <span className="float-right">
-                <i className="fa fa-angle-right"></i>
-              </span>
+              <Link to="/user-details">
+                <span className="float-left">View Details</span>
+                <span class4Name="float-right">
+                  <i className="fa fa-angle-right"></i>
+                </span>
+              </Link>
             </a>
           </div>
         </div>
-        <div className="col-xl-3 col-sm-6 mb-3">
+        {/* <div className="col-xl-3 col-sm-6 mb-3">
           <div className="card text-white bg-warning o-hidden h-100">
             <div className="card-body">
               <div className="card-body-icon">
@@ -74,10 +98,10 @@ class DashboardPage extends React.Component {
               </span>
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
-        </>
-    }
-}
+    </>
+  );
+};
 
 export default adminLayout(DashboardPage);
