@@ -12,6 +12,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
 import { UserProvider } from "./globalStorage/UserProvider";
 import AllUserData from "./pages/AllUserData";
+import AllbookingData from "./pages/AllbookingData";
+import AllYachtData from "./pages/AllYachtData";
+
 
 function App() {
   return (
@@ -36,6 +39,15 @@ function App() {
             <Route exact path="/typography" element={<TypographyPage />} />
             <Route exact path="/blank-page" element={<AdminBlankPage />} />
             <Route exact path="/user-details" element={<AllUserData />} />
+            <Route exact path="/yacht-details" element={<AllYachtData
+            />} />
+            <Route exact path="/booking-details" element={<AllbookingData
+            />}
+
+
+
+            />
+
           </Routes>
         </UserProvider>
       </ToastProvider>

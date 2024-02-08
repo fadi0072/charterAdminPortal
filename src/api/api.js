@@ -52,4 +52,52 @@ const getAllUsers = async (token) => {
   }
 };
 
-export { loginUser, getAllUsers };
+const getAllBookings = async (token) => {
+  const url = `${BASE_URL}/admin/get/all-bookings`;
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("API error:", error);
+    throw error;
+  }
+};
+
+
+const getAllYachts = async (token) => {
+  const url = `${BASE_URL}/admin/get/all-yatchs`;
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("API error:", error);
+    throw error;
+  }
+};
+export { loginUser, getAllUsers,getAllBookings,getAllYachts };

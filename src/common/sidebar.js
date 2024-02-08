@@ -31,7 +31,19 @@ const Sidebar = () => {
 
           <li className="mb-1">
             <Link tag="a" className="" to="/user-details">
-              <i className="fa fa-file-o"></i> Users
+              <i className="fa fa-user"></i> Users
+            </Link>
+          </li>
+
+          <li className="mb-1">
+            <Link tag="a" className="" to="/booking-details">
+              <i className="fa fa-book"></i> Bookings
+            </Link>
+          </li>
+
+          <li className="mb-1">
+            <Link tag="a" className="" to="/yacht-details">
+            <i className="fa fa-ship"></i> Yachts
             </Link>
           </li>
           <li className="mb-1">
