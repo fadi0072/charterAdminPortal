@@ -27,11 +27,11 @@ const userProfileLayout = (ChildComponent) => {
                             <!-- SIDEBAR USER TITLE --> */}
                             <div className="profile-usertitle">
                                 <div className="profile-usertitle-name">
-                                    Tarun Dhiman
+                                   Yasir Mehmood
                                 </div>
-                                <div className="profile-usertitle-job">
+                                {/* <div className="profile-usertitle-job">
                                     Software Engineer
-                                </div>
+                                </div> */}
                             </div>
                             {/* <!-- END SIDEBAR USER TITLE -->
                             <!-- SIDEBAR BUTTONS --> */}
